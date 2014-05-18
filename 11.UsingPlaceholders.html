@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Using placeholders</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // task 11 - Write a function that formats a string using placeholders.
+        // The function should work with up to 30 placeholders and all types
+
+        function formatString(template, plcHolder1) {
+            if (arguments.length < 2) {
+                return 'You have to define the template and the content of at least one place holedr.'
+            }
+            else {
+                var regEx = /\{[0-9]{1,2}\}/;
+                var index = template.search(regEx);
+                while (index !== -1) {
+                    var tempor = template.match(regEx).toString();
+                    var number = parseInt(tempor.substr(1, tempor.length - 2));
+                    if (arguments[number + 1]) {
+                        template = template.replace(tempor, arguments[number + 1].toString());
+                        index = template.search(regEx);
+                    }
+                    else {
+                        return 'Formating error! There is no content corresponding to placeholeder' + tempor;
+                    }
+                }
+            }
+
+            return template;
+        }
+
+        var cities = ['Sofia', 'Varna', 'Plovdiv'];
+        var open = true;
+        console.log(formatString('Number of employees {0}. Manager: {2}; Accountant: {1}; Sales: {3}; Offices: {4};\nWork on Saturdays: {5}; Total turnover: {6} EURO;', 5, 'Gosho', 'Tania', 'Angel', cities, open, 125478.16));
+        console.log(formatString("{0}, {1}, {0} text {2}", 1, "Pesho", "Gosho"));
+        console.log(formatString('no placeholders in the text', 25, 'Ivan'));
+    </script>
+</body>
+</html>

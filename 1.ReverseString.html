@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Reverse String</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // Task 1 - Write a JavaScript function reverses string and returns it
+
+        var reverseString = function (inp) {
+            var output = [];
+
+            for (var i = inp.length; i >= 0 ; i--) {
+                output.push(inp[i]);
+            }
+
+            return output.join('').toString();
+        }
+
+        var input = 'appointment';
+        console.log('input->' + input);
+        console.log('output-> ' + reverseString(input));
+    </script>
+</body>
+</html>

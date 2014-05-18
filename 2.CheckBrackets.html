@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Reverse String</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // Task 2 - Write a JavaScript function to check if in a given expression the brackets are put correctly.
+
+
+        var checkBrackets = function (str) {
+            var tempor = 0;
+
+            for (var i = 0; i < input.length; i++) {
+                if (input[i] == '(') {
+                    tempor++;
+                }
+                else if (input[i] == ')') {
+                    tempor--;
+                }
+
+                if (tempor < 0) {
+                    break;
+                }
+            }
+
+            return tempor == 0 ? true : false;
+        }
+
+        var input = '((a+B+(c/2-g)*3-a*(-2/d+4))';
+
+        console.log(input);
+        console.log(checkBrackets(input) ? 'correct bracket order' : 'incorect bracket order');
+
+    </script>
+</body>
+</html>

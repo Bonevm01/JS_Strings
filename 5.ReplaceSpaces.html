@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Replace spaces</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // Task 5 - Write a function that replaces non breaking white-spaces in a text with &nbsp;
+
+        String.prototype.ReplaceSpaces = function () {
+            var strBuild = [];
+            for (var i = 0; i < this.length; i++) {
+                if (this[i] == ' ') {
+                    strBuild.push('&nbsp;')
+                }
+                else {
+                    strBuild.push(this[i]);
+                }
+            }
+
+            return strBuild.join('').toString();
+        }
+
+        var input = "My      name  is   Michael Jordan   "
+        var input2 = "Alaba     nica   alabala"
+        var output = input.ReplaceSpaces();
+
+        console.log(output);
+        output = input2.ReplaceSpaces();
+        console.log(output);
+
+    </script>
+</body>
+</html>

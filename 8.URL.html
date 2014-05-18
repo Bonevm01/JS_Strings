@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Replace tags</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // Task 8 - Write a JavaScript function that replaces in a HTML document 
+        // given as string all the tags <a href="…">…</a> with corresponding tags [URL=…]…/URL]. 
+
+        var ReplaceHREF = function (input) {
+            var regEx = /<a href[^>]+>/;
+
+            do {
+
+                var index = input.search(regEx);
+
+                if (index != -1) {
+                    var origPart = input.match(regEx).toString();
+                    var tempor = origPart.replace('<a href="', '[URL=');
+                    tempor = tempor.replace('">', ']');
+                    input = input.replace(origPart, tempor);
+                    input = input.replace('</a>', '[/URL]');
+                }
+            } while (index != -1);
+                        
+            return input;
+        }
+
+        var text = '<p>Please visit <a href="http://academy.telerik. com">our site</a> to choose a training course. Also visit <a href="www.devbg.org">our forum</a> to discuss the courses.</p>';
+        console.log('Original text --> ' + text);
+        console.log('');
+        console.log(ReplaceHREF(text));
+
+    </script>
+</body>
+</html>

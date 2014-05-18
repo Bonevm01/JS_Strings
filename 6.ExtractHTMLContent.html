@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Extract Content</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // Task 6 - Write a function that extracts the content of a html page given as text. 
+        // The function should return anything that is in a tag, without the tags:
+
+        var extractHTMLText = function (input) {
+            var strBuild = [];
+            var start = false;
+
+            for (var i = 0; i < input.length; i++) {
+                if (input[i] == '>') {
+                    start = true;
+                }
+                else if (input[i] == '<') {
+                    start = false;
+                }
+                else {
+                    if (start) {
+                        strBuild.push(input[i]);
+                    }
+                }
+            }
+
+            return strBuild.join('').toString();
+        }
+
+        var text = '<html><head><title>Sample site</title></head><body><div>text<div>more text</div>and more...</div>in body</body></html>';
+        console.log('input: ' + text)
+        console.log(extractHTMLText(text));
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Extract palindromes</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // task 10 - Write a program that extracts from a given text all palindromes, e.g. "ABBA", "lamal", "exe".
+
+        var findPalindromes = function (input) {
+            var regEx = /\b[a-zA-Z]+\b/;
+            var result = [];
+            do {
+                var index = input.search(regEx);
+                if (index != -1) {
+                    var wordFound = input.match(regEx).toString();
+                    var tempor = wordFound.toLowerCase();
+                    var palindr = true;
+                    var middle = Math.floor(wordFound.length / 2);
+                    for (var i = 0; i < middle; i++) {
+                        if (tempor[i] != tempor[wordFound.length - 1 - i]) {
+                            palindr = false;
+                            break;
+                        }
+                    }
+
+                    if (palindr) {
+                        result.push(wordFound);
+                    }
+
+                    input = input.replace(wordFound, '');
+                }
+            } while (index != -1);
+
+            return result;
+        }
+
+        var text = 'gosho, lamal, pesho, exe, ABBA - ? hodoh pesha + alabala. Next level tennis Madam 121 year';
+        console.log('input --> ' + text);
+        console.log('Palindromes: '+ findPalindromes(text).join('; ').toString());
+
+    </script>
+</body>
+</html>

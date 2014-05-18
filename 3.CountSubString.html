@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Count SubString</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // Task 3 - Write a JavaScript function that finds how many times 
+        // a substring is contained in a given text (perform case insensitive search).
+
+        var inp = "We are living in an yellow submarine. We don't have anything else. Inside the submarine is very tight. So we are drinking all the day. We will move out of it in 5 days. Infinity";
+        var targ = 'iN';
+
+        var countSubString = function (input, target) {
+            var input = input.toLowerCase();
+            var target = target.toLowerCase();
+            var result = 0;
+            var position = 0;
+
+            do {
+                var tempor = input.indexOf(target, position);
+                if (tempor != -1) {
+                    result++;
+                }
+                position = tempor + target.length;
+            } while (tempor != -1)
+
+            return result;
+        }
+
+        console.log(targ + ' appears ' + countSubString(inp, targ) + ' times in the text (case insensitive)');
+
+    </script>
+</body>
+</html>

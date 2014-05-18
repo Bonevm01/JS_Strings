@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Extract elements</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // Task 7 - Write a script that parses an URL address given in the format:
+        // [protocol]://[server]/[resource]
+        // and extracts from it the [protocol], [server] and [resource] elements.
+        // Return the elements in a JSON object.
+
+        var extractElements = function (input) {
+            var result = {};
+            var index = input.indexOf('://')
+            result.protocol = input.substr(0, index);
+            var index2 = input.indexOf('/', index + 3);
+            result.server = input.substring(index + 3, index2);
+            result.resourses = input.substring(index2, input.length);
+
+            return result;
+        }
+
+        var text = 'http://www.devbg.org/forum/index.php';
+
+        console.log(extractElements(text));
+    </script>
+</body>
+</html>

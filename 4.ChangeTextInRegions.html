@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Change Text</title>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Please enter F12 and see the result of my code on the console.</p>
+    <script>
+        // Task 4 - You are given a text. Write a function that changes the text in all regions:
+        // <upcase>text</upcase> to uppercase.
+        // <lowcase>text</lowcase> to lowercase
+        // <mixcase>text</mixcase> to mix casing(random)
+        // Regions can be nested
+                
+        var changeTextInRegions = function (input) {
+
+            var regEx1 = /<upcase>[^<>]*?<\/upcase>/;
+            var regEx2 = /<mixcase>[^<>]*?<\/mixcase>/;
+            var regEx3 = /<lowcase>[^<>]*?<\/lowcase>/;
+
+
+            do {
+                var index1 = input.search(regEx1);
+
+                if (index1 != -1) {
+                    var origPart = input.match(regEx1).toString();
+                    var tempor = origPart.substring(8, origPart.length - 9).toUpperCase();
+                    input = input.replace(origPart, tempor)
+                }
+                
+                var index2 = input.search(regEx2);
+                if (index2 != -1) {
+                    var origPart = input.match(regEx2).toString();
+                    var tempor = origPart.substring(9, origPart.length - 10);
+                    var strBuild = [];
+                    for (var i = 0; i < tempor.length; i++) {
+                        var rnd = Math.random();
+                        if (rnd < 0.5) {
+                            strBuild.push(tempor[i].toLowerCase());
+                        }
+                        else {
+                            strBuild.push(tempor[i].toUpperCase());
+                        }
+                    }
+
+                    tempor = strBuild.join('');
+                    input = input.replace(origPart, tempor)
+                }
+
+                var index3 = input.search(regEx3);
+                if (index3 != -1) {
+                    var origPart = input.match(regEx3).toString();
+                    var tempor = origPart.substring(9, origPart.length - 10).toLowerCase();
+                    input = input.replace(origPart, tempor)
+                }
+
+            } while (index1 != -1 || index2 != -1 || index3 != -1);
+
+            return input;
+        }
+
+        var inp = "<mixcase>We all</mixcase> <upcase>are <mixcase>living</mixcase> in</upcase> a <upcase>yellow submarine</upcase>. <mixcase>We don't</mixcase> have <lowcase>ANYthing</lowcase> <mixcase>else</mixcase>.";
+
+        console.log('Input: ' + inp);
+        console.log(changeTextInRegions(inp));
+
+
+
+    </script>
+</body>
+</html>

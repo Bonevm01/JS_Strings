@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Using placeholders</title>
+    <style>
+        span {
+            color: red;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="printArea"></div>
+    <script>
+        // task 12 - Write a function that creates a HTML UL using a template for every HTML LI. 
+        // The source of the list should an array of elements. Replace all placeholders marked with –{…}–  
+        // with the value of the corresponding property of the object. 
+
+        function createUL(template, arr) {
+            var result = '<ul>';
+            if (arguments.length < 2) {
+                return 'You have to define the template and the array of elements.'
+            }
+            else {
+                var regEx = /\-\{[a-z, A-Z,0-9, _, $]+\}\-/;
+
+                for (var i = 0; i < arr.length; i++) {
+                    var current = template;
+                    var tempor = current.match(regEx);
+                    var property = '';
+                    while (tempor) {
+                        tempor = tempor.toString();
+                        property = tempor.substr(2, tempor.length - 4);
+                        if (arr[i][property]) {
+                            current = current.replace(tempor, arr[i][property]);
+                        }
+                        else {
+                            return "Error! One of the objects in the array doesn't have property " + property +
+                                ' which is part of your template.'
+                        }
+
+                        tempor = current.match(regEx);
+                    }
+
+                    result = result + "<li>" + current + '</li>'
+                }
+
+                result = result + '</ul>';
+            }
+
+            return result;
+        }
+
+        var templ = '<em>-{name}-</em> <a href="#">-{age}-</a>';
+        var people = [{ name: 'Ivan', age: 22 }, { name: 'Mihail', age: 32 },
+                        { name: 'Petia', age: 25 }, { name: 'Maria', age: 27 }];
+        var print = document.getElementById('printArea');
+        var firstUl = createUL(templ, people)
+
+        var newTempl = 'Country: <strong>-{name}-</strong>; capital: <span>-{capital}-</span>; population <em>-{population}-</em>';
+        var countries = [{ name: 'Bulgaria', capital: 'Sofia', population: '7.2 mln' }, { name: 'Greece', capital: 'Atina', population:'10.8 mln' },
+                            { name: 'UK', capital: 'London', population:'63.7 mln' }];
+        var secondUl = createUL(newTempl, countries)
+        
+        print.innerHTML = firstUl + secondUl;
+    </script>
+</body>
+</html>
